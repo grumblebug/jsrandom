@@ -1,0 +1,57 @@
+<html>
+<!-- hand coded --> 
+
+<head>
+  <title>Zooey: May 10, 2006</title>
+  <meta http-equiv="refresh" content="12">
+
+<!-- Script to generate random Zooey facts  -->
+<script language="JavaScript">
+/* Get a random number & set the number of Zooeyfacts in the array (factlimit). */
+var randomizer = Math.random();
+var factlimit = 26;
+var factnumber = Math.round(randomizer*(factlimit));
+
+/* The facts of Zooey, the greatest cat ever to live. */
+Zooeyfact = new Array
+Zooeyfact[1] = "Zooey once took a dump in my shoes."
+Zooeyfact[2] = "Zooey's favorite toy was a rag ball."
+Zooeyfact[3] = "Zooey would snuggle up next to me as I lay on the couch."
+Zooeyfact[4] = "Zooey had six toes."
+Zooeyfact[5] = "Zooey would not eat human food."
+Zooeyfact[6] = "Zooey had a silent cry."
+Zooeyfact[7] = "Zooey liked to chase a string we had lying around.  It's well worn from her claws and teeth."
+Zooeyfact[8] = "Zooey once sneezed all over my face."
+Zooeyfact[9] = "Zooey loved to interrupt you while you worked or played games."
+Zooeyfact[10] = "Zooey had a cold, wet nose -- all the time."
+Zooeyfact[11] = "Zooey used to keep us company when we stayed home sick."
+Zooeyfact[12] = "Zooey's favorite TV show was <u>The Life Of Birds</u>."
+Zooeyfact[13] = "Zooey hunted carpenter ants."
+Zooeyfact[14] = "Zooey was my best friend."
+Zooeyfact[15] = "Zooey sometimes suffered from a strange condition known as 'poop butt.'"
+Zooeyfact[16] = "Zooey's butt would wobble when she walked down stairs."
+Zooeyfact[17] = "Zooey would always greet us at the door when we came home."
+Zooeyfact[18] = "Zooey liked to play with your shoelaces when you were putting your shoes on."
+Zooeyfact[19] = "Zooey liked to chase the Roomarang around."
+Zooeyfact[20] = "Zooey played with your yarn when you tried to knit."
+Zooeyfact[21] = "Zooey would toss her rag ball against the wall just so she could experience the joy of batting it out of the air."
+Zooeyfact[22] = "Zooey would gently touch your leg with her paw to get your attention."
+Zooeyfact[23] = "Zooey once climbed into the dishwasher."
+Zooeyfact[24] = "Zooey liked climbing into empty paper bags."
+Zooeyfact[25] = "Zooey followed me around the house."
+Zooeyfact[26] = "Zooey's passing was accompanied by two weeks of rain."
+
+/* Stay in range. Don't select factnumber 0 or factlimit + 1. Common mistake. */
+if (factnumber < 1) {factnumber = factlimit} else { if (factnumber > factlimit) {factnumber = 1}
+else {factnumber = factnumber}}
+
+var Zooeyinfo = Zooeyfact[factnumber]
+</script>
+</head>
+
+<body>
+
+<h2>Zooey Fact: </h2>
+<p class=fakewrap><script language="JavaScript">document.write(Zooeyinfo)</script></p>
+</body>
+</html>
