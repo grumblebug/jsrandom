@@ -1,6 +1,7 @@
-<html>
-<!-- hand coded --> 
-
+<!DOCTYPE html>
+<!-- --------------------------------------------- -->
+<!--  Simple random fact selector demonstration    --> 
+<!-- --------------------------------------------- -->
 <head>
   <title>Zooey: May 10, 2006</title>
   <style>
@@ -10,55 +11,127 @@
       font-weight: 100;
     }
   </style>
-  <meta http-equiv="refresh" content="12">
 
-<!-- Script to generate random Zooey facts  -->
-<script language="JavaScript">
-/* Get a random number & set the number of Zooeyfacts in the array (factlimit). */
-var randomizer = Math.random();
-var factlimit = 26;
-var factnumber = Math.round(randomizer*(factlimit));
+  <script>
+    /* ------------------------------------------------ */
+    /*  Reload the page every 12 seconds                */
+    /* ------------------------------------------------ */
+    setTimeout(() => {
+      window.location.href = window.location.href;
+    }, 12000);
+  </script>
 
-/* The facts of Zooey, the greatest cat ever to live. */
-Zooeyfact = new Array
-Zooeyfact[1] = "Zooey once took a dump in my shoes."
-Zooeyfact[2] = "Zooey's favorite toy was a rag ball."
-Zooeyfact[3] = "Zooey would snuggle up next to me as I lay on the couch."
-Zooeyfact[4] = "Zooey had six toes."
-Zooeyfact[5] = "Zooey would not eat human food."
-Zooeyfact[6] = "Zooey had a silent cry."
-Zooeyfact[7] = "Zooey liked to chase a string we had lying around.  It's well worn from her claws and teeth."
-Zooeyfact[8] = "Zooey once sneezed all over my face."
-Zooeyfact[9] = "Zooey loved to interrupt you while you worked or played games."
-Zooeyfact[10] = "Zooey had a cold, wet nose -- all the time."
-Zooeyfact[11] = "Zooey used to keep us company when we stayed home sick."
-Zooeyfact[12] = "Zooey's favorite TV show was <u>The Life Of Birds</u>."
-Zooeyfact[13] = "Zooey hunted carpenter ants."
-Zooeyfact[14] = "Zooey was my best friend."
-Zooeyfact[15] = "Zooey sometimes suffered from a strange condition known as 'poop butt.'"
-Zooeyfact[16] = "Zooey's butt would wobble when she walked down stairs."
-Zooeyfact[17] = "Zooey would always greet us at the door when we came home."
-Zooeyfact[18] = "Zooey liked to play with your shoelaces when you were putting your shoes on."
-Zooeyfact[19] = "Zooey liked to chase the Roomarang around."
-Zooeyfact[20] = "Zooey played with your yarn when you tried to knit."
-Zooeyfact[21] = "Zooey would toss her rag ball against the wall just so she could experience the joy of batting it out of the air."
-Zooeyfact[22] = "Zooey would gently touch your leg with her paw to get your attention."
-Zooeyfact[23] = "Zooey once climbed into the dishwasher."
-Zooeyfact[24] = "Zooey liked climbing into empty paper bags."
-Zooeyfact[25] = "Zooey followed me around the house."
-Zooeyfact[26] = "Zooey's passing was accompanied by two weeks of rain."
 
-/* Stay in range. Don't select factnumber 0 or factlimit + 1. Common mistake. */
-if (factnumber < 1) {factnumber = factlimit} else { if (factnumber > factlimit) {factnumber = 1}
-else {factnumber = factnumber}}
-
-var Zooeyinfo = Zooeyfact[factnumber]
-</script>
 </head>
 
 <body>
-
 <h2>Zooey Fact: </h2>
-<p class=fakewrap><script language="JavaScript">document.write(Zooeyinfo)</script></p>
+
+<!-- --------------------------------------------- -->
+<!--  Set the element ID, into which the script    --> 
+<!--  will place the content.                      -->
+<!-- --------------------------------------------- -->
+<p ID="randomfact"></p>
+
+
+<script language="JavaScript">
+/* ------------------------------------------------ */
+/*  set debug to 1 to turn on  console.log on to    */
+/*  help see what's going on.                       */
+/* ------------------------------------------------ */
+let debug = 1;
+if (debug === 0) {
+  console.log = function () {};
+}
+else {
+  console.log("[ Debug on ]");
+}
+
+/* ------------------------------------------------ */
+/*  Define the last fact selected. If there's       */
+/*  nothing in factStore this will be null and      */
+/*  that's OK. It will get set later anyway.        */
+/* ------------------------------------------------ */
+let lastFact = sessionStorage.getItem("factStore");
+
+/* ------------------------------------------------ */
+/*  The array containing facts of Zooey, the        */
+/*  greatest cat ever. The index starts at 0.       */
+/* ------------------------------------------------ */
+let Zooeyfact = [
+  'Zooey once took a dump in my shoes.',
+  'Zooey\'s favorite toy was a rag ball.',
+  'Zooey would snuggle up next to me as I lay on the couch.',
+  'Zooey had six toes.',
+  'Zooey would not eat human food.',
+  'Zooey had a silent cry.',
+  'Zooey liked to chase a string we had lying around.  It\'s well worn from her claws and teeth.',
+  'Zooey once sneezed all over my face.',
+  'Zooey loved to interrupt you while you worked or played games.',
+  'Zooey had a cold, wet nose -- all the time.',
+  'Zooey used to keep us company when we stayed home sick.',
+  'Zooey\'s favorite TV show was <u>The Life Of Birds</u>.',
+  'Zooey hunted carpenter ants.',
+  'Zooey was my best friend.',
+  'Zooey sometimes suffered from a strange condition known as \"poop butt.\"',
+  'Zooey\'s butt would wobble when she walked down stairs.',
+  'Zooey would always greet us at the door when we came home.',
+  'Zooey liked to play with your shoelaces when you were putting your shoes on.',
+  'Zooey liked to chase the Roomarang around.',
+  'Zooey played with your yarn when you tried to knit.',
+  'Zooey would toss her rag ball against the wall just so she could experience the joy of batting it out of the air.',
+  'Zooey would gently touch your leg with her paw to get your attention.',
+  'Zooey once climbed into the dishwasher.',
+  'Zooey liked climbing into empty paper bags.',
+  'Zooey followed me around the house.',
+  'Zooey\'s passing was accompanied by two weeks of rain.',
+];
+
+console.log ("[ Last fact: (" + lastFact + ") " + Zooeyfact[lastFact] + "]");
+
+/* ------------------------------------------------ */
+/*  Get a random number within range of the array.  */
+/*  Avoid re-picks by checking the last pick.       */
+/* ------------------------------------------------ */
+do {
+    /* ------------------------------------------------ */
+    /*  Get the last pick.                              */
+    /* ------------------------------------------------ */
+    let lastFact = sessionStorage.getItem("factStore");
+
+    /* ------------------------------------------------ */
+    /*  Get the current pick from the array. Stay in    */
+    /*  range by calculating the length of the array.   */
+    /* ------------------------------------------------ */
+    var factIndex = Math.floor(Math.random() * Zooeyfact.length);
+    console.log("[ factIndex: (" + factIndex + ") ]");
+    
+    /* ------------------------------------------------ */
+    /*  If debug is on, log repeat picks.               */
+    /* ------------------------------------------------ */
+    if (lastFact == factIndex){
+        console.log ("  [ Repeat Detected!: (" + lastFact + ") " + Zooeyfact[lastFact] + " ]");
+    }
+}
+/* ------------------------------------------------ */
+/*  Run this while the current pick matches the     */
+/*  last pick.                                      */
+/* ------------------------------------------------ */
+while (lastFact == factIndex)
+
+/* ------------------------------------------------ */
+/*  Store the current pick to avoid re-picks        */
+/* ------------------------------------------------ */
+var Zooeyinfo = Zooeyfact[factIndex];
+console.log("[ Zooeyinfo: " + Zooeyinfo + " ]");
+sessionStorage.setItem("factStore", factIndex);
+
+/* ------------------------------------------------ */
+/*  put the item you picked into the document       */
+/*  element ID you defined earlier.                 */
+/* ------------------------------------------------ */
+document.getElementById("randomfact").innerHTML = Zooeyinfo;
+</script>
+
 </body>
 </html>
